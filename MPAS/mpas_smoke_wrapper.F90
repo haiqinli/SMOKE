@@ -662,6 +662,8 @@ contains
     enddo
     enddo
 
+    if (config_mp_aero_emission) then
+
     do j=jts,jte
     do i=its,ite
       em_dust     (i,j)=e_dust_out(i,kts,j,index_e_dust_out_dust_fine )*0.05     ! ug/m2/s
@@ -674,7 +676,6 @@ contains
     enddo
     enddo
 
-    if (config_mp_aero_emission) then
       call  mp_aero_emission(em_dust,em_fire_oc,em_antho_oc,em_seas,        &
             dt, xland, nwfa2d, nifa2d, rri, dz8w,                           &
             ids,ide, jds,jde, kds,kde,                                      &
