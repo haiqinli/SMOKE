@@ -125,7 +125,7 @@ contains
     real(RKIND),intent(in), dimension(ims:ime, jms:jme)             :: coszen
     real(RKIND),intent(in), dimension(ims:ime, jms:jme)             :: raincv, rainncv, mavail                    
     real(RKIND),intent(inout), dimension(ims:ime, jms:jme)          :: rmol, ust
-    real(RKIND),intent(inout), dimension(ims:ime, jms:jme)          :: nwfa2d, nifa2d
+    real(RKIND),intent(inout), dimension(ims:ime, jms:jme),optional :: nwfa2d, nifa2d
 ! 2D Fire Input
     real(RKIND),intent(in), dimension(ims:ims, jms:jme), optional      :: totprcp_prev24, fire_end_hr,fmc_avg,     &
                                                                           efs_smold, efs_flam, efs_rsmold
@@ -662,7 +662,7 @@ contains
     enddo
     enddo
 
-    if (config_mp_aero_emission) then
+    if (config_mp_aero_emission .and. present(nwfa2d) .and. present(nifa2d)) then
 
     do j=jts,jte
     do i=its,ite
